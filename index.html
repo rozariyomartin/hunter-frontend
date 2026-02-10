@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Hunter | Elite CTF Operators</title>
+    <meta name="description"
+        content="Team Hunter - Elite Capture The Flag cybersecurity team. Hack. Defend. Dominate. Join our elite cyber operations unit.">
+    <meta name="keywords" content="CTF, cybersecurity, hacking, Team Hunter, ethical hacking, penetration testing">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-black text-white overflow-x-hidden">
+
+    <!-- Cursor Trail -->
+    <div id="cursor-glow" class="cursor-glow"></div>
+
+    <!-- Particle Background -->
+    <canvas id="particle-canvas" class="particle-canvas"></canvas>
+
+    <!-- Terminal Intro -->
+    <div id="terminal-intro" class="terminal-intro">
+        <div class="terminal-content">
+            <p class="terminal-line">root@hunter:~# <span class="terminal-cursor">_</span></p>
+            <p class="terminal-line hidden">Initializing secure connection...</p>
+            <p class="terminal-line hidden">Loading cyber operations interface...</p>
+            <p class="terminal-line hidden">Access granted. Welcome, operator.</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold font-orbitron cyber-glow">
+                    <span class="text-cyber-green">&gt;</span> TEAM HUNTER
+                </div>
+                <div class="hidden md:flex space-x-8 font-rajdhani text-lg">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#domains" class="nav-link">Domains</a>
+                    <a href="#achievements" class="nav-link">Achievements</a>
+                    <a href="#team" class="nav-link">Team</a>
+                    <a href="#writeups" class="nav-link">Writeups</a>
+                    <a href="#join" class="nav-link cyber-glow">Join Us</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-cyber-cyan">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 hidden">
+        <div class="mobile-menu-backdrop" id="mobile-backdrop"></div>
+        <div class="mobile-menu-content">
+            <a href="#about" class="mobile-menu-link">About</a>
+            <a href="#domains" class="mobile-menu-link">Domains</a>
+            <a href="#achievements" class="mobile-menu-link">Achievements</a>
+            <a href="#team" class="mobile-menu-link">Team</a>
+            <a href="#writeups" class="mobile-menu-link">Writeups</a>
+            <a href="#join" class="mobile-menu-link">Join Us</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 matrix-rain-container">
+            <canvas id="matrix-canvas"></canvas>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="hero-content floating-element" data-float-speed="1">
+                <div class="glitch-wrapper mb-4">
+                    <h1 class="hero-title font-orbitron" data-text="TEAM HUNTER">TEAM HUNTER</h1>
+                </div>
+                <p class="hero-subtitle font-rajdhani text-2xl md:text-3xl mb-12 text-cyber-cyan">
+                    Elite Capture The Flag Operators | <span class="text-cyber-green">Hack.</span> <span
+                        class="text-cyber-purple">Defend.</span> <span class="text-white">Dominate.</span>
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    <a href="#join" class="cta-button cta-primary floating-element" data-float-speed="0.8">
+                        <span class="relative z-10">Join the Team</span>
+                    </a>
+                    <a href="#writeups" class="cta-button cta-secondary floating-element" data-float-speed="0.9">
+                        <span class="relative z-10">View Writeups</span>
+                    </a>
+                    <a href="#contact" class="cta-button cta-tertiary floating-element" data-float-speed="0.7">
+                        <span class="relative z-10">Contact</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding relative">
+        <div class="container mx-auto px-6">
+            <div class="glass-panel floating-element" data-float-speed="0.5">
+                <h2 class="section-title font-orbitron">
+                    <span class="text-cyber-green">[</span> About Team Hunter <span class="text-cyber-green">]</span>
+                </h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6 font-rajdhani text-lg leading-relaxed">
+                        <p class="cyber-text">
+                            <span class="text-cyber-cyan font-bold">Team Hunter</span> is an elite collective of
+                            cybersecurity professionals, ethical hackers, and security researchers united by a singular
+                            mission: to push the boundaries of offensive and defensive security through competitive CTF
+                            challenges.
+                        </p>
+                        <p class="cyber-text">
+                            We don't just compete—we <span class="text-cyber-green font-bold">dominate</span>. Our team
+                            specializes in rapid threat assessment, exploit development, and creative problem-solving
+                            under pressure. Every challenge is an opportunity to refine our craft and contribute to the
+                            broader security community.
+                        </p>
+                        <p class="cyber-text">
+                            Founded on principles of <span class="text-cyber-purple font-bold">continuous
+                                learning</span>, <span class="text-cyber-cyan font-bold">ethical responsibility</span>,
+                            and <span class="text-cyber-green font-bold">relentless pursuit of excellence</span>, we're
+                            not just participants in the cybersecurity landscape—we're architects of its future.
+                        </p>
+                    </div>
+                    <div class="terminal-box floating-element" data-float-speed="0.6">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <span class="font-mono text-xs">hunter@mission:~$</span>
+                        </div>
+                        <div class="terminal-body font-mono text-sm">
+                            <p><span class="text-cyber-green">$</span> cat mission.txt</p>
+                            <p class="text-cyber-cyan mt-2">━━━━━━━━━━━━━━━━━━━━━━━</p>
+                            <p class="mt-2">MISSION: Master offensive security</p>
+                            <p>VISION: Lead the cybersecurity frontier</p>
+                            <p>VALUES: Ethics | Skill | Teamwork</p>
+                            <p class="text-cyber-cyan mt-2">━━━━━━━━━━━━━━━━━━━━━━━</p>
+                            <p class="mt-2"><span class="text-cyber-green">✓</span> Always ethical</p>
+                            <p><span class="text-cyber-green">✓</span> Always learning</p>
+                            <p><span class="text-cyber-green">✓</span> Always hunting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Domains Section -->
+    <section id="domains" class="section-padding relative">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title font-orbitron text-center mb-16">
+                <span class="text-cyber-cyan">[</span> Domains We Hunt <span class="text-cyber-cyan">]</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Web Exploitation -->
+                <div class="domain-card floating-element" data-float-speed="0.7" data-repel="true">
+                    <div class="domain-icon">🌐</div>
+                    <h3 class="domain-title">Web Exploitation</h3>
+                    <p class="domain-desc">SQL injection, XSS, CSRF, authentication bypasses, and modern web
+                        vulnerabilities</p>
+                    <div class="domain-glow"></div>
+                </div>
+
+                <!-- Binary Exploitation -->
+                <div class="domain-card floating-element" data-float-speed="0.6" data-repel="true">
+                    <div class="domain-icon">⚙️</div>
+                    <h3 class="domain-title">Binary Exploitation</h3>
+                    <p class="domain-desc">Buffer overflows, ROP chains, heap exploits, and low-level system hacking</p>
+                    <div class="domain-glow"></div>
+                </div>
+
+                <!-- Cryptography -->
+                <div class="domain-card floating-element" data-float-speed="0.8" data-repel="true">
+                    <div class="domain-icon">🔐</div>
+                    <h3 class="domain-title">Cryptography</h3>
+                    <p class="domain-desc">Classical & modern crypto, RSA, AES, hash functions, and custom cipher
+                        breaking</p>
+                    <div class="domain-glow"></div>
+                </div>
+
+                <!-- Forensics -->
+                <div class="domain-card floating-element" data-float-speed="0.5" data-repel="true">
+                    <div class="domain-icon">🔍</div>
+                    <h3 class="domain-title">Digital Forensics</h3>
+                    <p class="domain-desc">Steganography, memory forensics, disk analysis, and artifact investigation
+                    </p>
+                    <div class="domain-glow"></div>
+                </div>
+
+                <!-- OSINT -->
+                <div class="domain-card floating-element" data-float-speed="0.9" data-repel="true">
+                    <div class="domain-icon">🎯</div>
+                    <h3 class="domain-title">OSINT</h3>
+                    <p class="domain-desc">Open-source intelligence, social engineering, and information gathering</p>
+                    <div class="domain-glow"></div>
+                </div>
+
+                <!-- Cloud & IoT -->
+                <div class="domain-card floating-element" data-float-speed="0.7" data-repel="true">
+                    <div class="domain-icon">☁️</div>
+                    <h3 class="domain-title">Cloud & IoT Security</h3>
+                    <p class="domain-desc">Cloud misconfigurations, container escapes, and IoT device exploitation</p>
+                    <div class="domain-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section-padding relative">
+        <div class="container mx-auto px-6">
+            <div class="glass-panel">
+                <h2 class="section-title font-orbitron text-center mb-16">
+                    <span class="text-cyber-purple">[</span> Achievements & Stats <span
+                        class="text-cyber-purple">]</span>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                    <div class="stat-card floating-element" data-float-speed="0.6">
+                        <div class="stat-number" data-target="150">0</div>
+                        <div class="stat-label">CTFs Played</div>
+                    </div>
+
+                    <div class="stat-card floating-element" data-float-speed="0.7">
+                        <div class="stat-number" data-target="42">0</div>
+                        <div class="stat-label">Top 10 Finishes</div>
+                    </div>
+
+                    <div class="stat-card floating-element" data-float-speed="0.5">
+                        <div class="stat-number" data-target="12">0</div>
+                        <div class="stat-label">Podium Ranks</div>
+                    </div>
+
+                    <div class="stat-card floating-element" data-float-speed="0.8">
+                        <div class="stat-number" data-target="2800">0</div>
+                        <div class="stat-label">Points on CTFtime</div>
+                    </div>
+                </div>
+
+                <div class="platform-badges">
+                    <div class="platform-badge floating-element" data-float-speed="0.6">
+                        <span class="badge-icon">🎖️</span>
+                        <span class="badge-text">Hack The Box</span>
+                    </div>
+                    <div class="platform-badge floating-element" data-float-speed="0.7">
+                        <span class="badge-icon">🏆</span>
+                        <span class="badge-text">TryHackMe</span>
+                    </div>
+                    <div class="platform-badge floating-element" data-float-speed="0.5">
+                        <span class="badge-icon">⚡</span>
+                        <span class="badge-text">CTFtime</span>
+                    </div>
+                    <div class="platform-badge floating-element" data-float-speed="0.8">
+                        <span class="badge-icon">🔥</span>
+                        <span class="badge-text">picoCTF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Members Section -->
+    <section id="team" class="section-padding relative">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title font-orbitron text-center mb-16">
+                <span class="text-cyber-green">[</span> Elite Operators <span class="text-cyber-green">]</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-card floating-element" data-float-speed="0.7" data-repel="true">
+                    <div class="team-avatar">
+                        <div class="avatar-placeholder">ΔX</div>
+                    </div>
+                    <h3 class="team-name">@kvnn</h3>
+                    <p class="team-role">Co-Founder | Web Exploit</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Web</span>
+                        <span class="skill-tag">API Security</span>
+                        <span class="skill-tag">SSRF</span>
+                    </div>
+                    <div class="team-glow"></div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-card floating-element" data-float-speed="0.6" data-repel="true">
+                    <div class="team-avatar">
+                        <div class="avatar-placeholder">Φ</div>
+                    </div>
+                    <h3 class="team-name">R0z4r1y0</h3>
+                    <p class="team-role">Co-Founder | Forensics</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Forensics</span>
+                        <span class="skill-tag">Steganography</span>
+                        <span class="skill-tag">Sanity Check</span>
+                    </div>
+                    <div class="team-glow"></div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-card floating-element" data-float-speed="0.8" data-repel="true">
+                    <div class="team-avatar">
+                        <div class="avatar-placeholder">Ω</div>
+                    </div>
+                    <h3 class="team-name">RadKriss</h3>
+                    <p class="team-role">Reverse Engineer</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Reverse Engineering</span>
+                        <span class="skill-tag">Binary Analysis</span>
+                        <span class="skill-tag">Cryptography</span>
+                    </div>
+                    <div class="team-glow"></div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-card floating-element" data-float-speed="0.5" data-repel="true">
+                    <div class="team-avatar">
+                        <div class="avatar-placeholder">Σ</div>
+                    </div>
+                    <h3 class="team-name">ShadowEternity</h3>
+                    <p class="team-role">Forensics | OSINT</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Forensics</span>
+                        <span class="skill-tag">Steganography</span>
+                        <span class="skill-tag">OSINT</span>
+                    </div>
+                    <div class="team-glow"></div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="team-card floating-element" data-float-speed="0.9" data-repel="true">
+                    <div class="team-avatar">
+                        <div class="avatar-placeholder">Ψ</div>
+                    </div>
+                    <h3 class="team-name">pr4s4nn4</h3>
+                    <p class="team-role">Binary Exploitation</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Binary Exploitation</span>
+                        <span class="skill-tag">Reverse Engineering</span>
+                        <span class="skill-tag">Cryptography</span>
+                    </div>
+                    <div class="team-glow"></div>
+                </div>
+
+                <!-- Team Member 6 -->
+                <div class="team-card floating-element" data-float-speed="0.7" data-repel="true">
+                    <div class="team-avatar">
+                        <div class="avatar-placeholder">Λ</div>
+                    </div>
+                    <h3 class="team-name">Lambda_Cloud</h3>
+                    <p class="team-role">Cloud & Infrastructure</p>
+                    <div class="team-skills">
+                        <span class="skill-tag">Cloud</span>
+                        <span class="skill-tag">Containers</span>
+                        <span class="skill-tag">DevSecOps</span>
+                    </div>
+                    <div class="team-glow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writeups Section -->
+    <section id="writeups" class="section-padding relative">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title font-orbitron text-center mb-16">
+                <span class="text-cyber-cyan">[</span> Writeups & Research <span class="text-cyber-cyan">]</span>
+            </h2>
+
+            <!-- Writeups Subsection -->
+            <div class="mb-16">
+                <h3 class="subsection-title font-orbitron text-center mb-8">
+                    <span class="text-cyber-green">›</span> CTF Writeups
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- CTF Card 1 -->
+                    <div class="ctf-card floating-element" data-float-speed="0.7" data-repel="true"
+                        onclick="window.location.href='ctf-challenges.html?ctf=L3m0nCTF-2025'">
+                        <div class="ctf-icon">🎯</div>
+                        <h3 class="ctf-name">L3m0nCTF 2025</h3>
+                        <p class="ctf-desc">CTF from Amrita Vishwa Vidyapeetham, Coimbatore</p>
+                        <div class="ctf-stats">
+                            <span class="ctf-stat">5 Challenges</span>
+                            <span class="ctf-stat">5 Solves</span>
+                        </div>
+                        <div class="ctf-glow"></div>
+                    </div>
+
+                    <!-- CTF Card 2 -->
+                    <div class="ctf-card floating-element" data-float-speed="0.6" data-repel="true"
+                        onclick="window.location.href='ctf-challenges.html?ctf=picoctf-2025'">
+                        <div class="ctf-icon">🏆</div>
+                        <h3 class="ctf-name">picoCTF 2025</h3>
+                        <p class="ctf-desc">Educational cybersecurity challenges</p>
+                        <div class="ctf-stats">
+                            <span class="ctf-stat">25 Challenges</span>
+                            <span class="ctf-stat">18 Solves</span>
+                        </div>
+                        <div class="ctf-glow"></div>
+                    </div>
+
+                    <!-- CTF Card 3 -->
+                    <div class="ctf-card floating-element" data-float-speed="0.8" data-repel="true"
+                        onclick="window.location.href='ctf-challenges.html?ctf=hacktm-2025'">
+                        <div class="ctf-icon">🔥</div>
+                        <h3 class="ctf-name">HackTM CTF 2025</h3>
+                        <p class="ctf-desc">Romanian international CTF</p>
+                        <div class="ctf-stats">
+                            <span class="ctf-stat">15 Challenges</span>
+                            <span class="ctf-stat">8 Solves</span>
+                        </div>
+                        <div class="ctf-glow"></div>
+                    </div>
+
+                    <!-- CTF Card 4 -->
+                    <div class="ctf-card floating-element" data-float-speed="0.5" data-repel="true"
+                        onclick="window.location.href='ctf-challenges.html?ctf=defconquals-2025'">
+                        <div class="ctf-icon">⚡</div>
+                        <h3 class="ctf-name">DEF CON Quals 2025</h3>
+                        <p class="ctf-desc">World's largest hacker convention</p>
+                        <div class="ctf-stats">
+                            <span class="ctf-stat">20 Challenges</span>
+                            <span class="ctf-stat">6 Solves</span>
+                        </div>
+                        <div class="ctf-glow"></div>
+                    </div>
+
+                    <!-- CTF Card 5 -->
+                    <div class="ctf-card floating-element" data-float-speed="0.9" data-repel="true"
+                        onclick="window.location.href='ctf-challenges.html?ctf=corctf-2025'">
+                        <div class="ctf-icon">💎</div>
+                        <h3 class="ctf-name">COR CTF 2025</h3>
+                        <p class="ctf-desc">High-quality security challenges</p>
+                        <div class="ctf-stats">
+                            <span class="ctf-stat">18 Challenges</span>
+                            <span class="ctf-stat">10 Solves</span>
+                        </div>
+                        <div class="ctf-glow"></div>
+                    </div>
+
+                    <!-- CTF Card 6 -->
+                    <div class="ctf-card floating-element" data-float-speed="0.7" data-repel="true"
+                        onclick="window.location.href='ctf-challenges.html?ctf=google-ctf-2025'">
+                        <div class="ctf-icon">🌟</div>
+                        <h3 class="ctf-name">Google CTF 2025</h3>
+                        <p class="ctf-desc">Google's annual security competition</p>
+                        <div class="ctf-stats">
+                            <span class="ctf-stat">22 Challenges</span>
+                            <span class="ctf-stat">7 Solves</span>
+                        </div>
+                        <div class="ctf-glow"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Research Subsection -->
+            <div>
+                <h3 class="subsection-title font-orbitron text-center mb-8">
+                    <span class="text-cyber-purple">›</span> Security Research
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Research Card 1 -->
+                    <div class="research-card floating-element" data-float-speed="0.6"
+                        onclick="window.location.href='writeup-viewer.html?url=https://raw.githubusercontent.com/teamhunter/research/main/rop-chain-analysis.md'">
+                        <div class="research-header">
+                            <h3 class="research-title">Advanced ROP Chain Analysis</h3>
+                            <span class="research-category">Binary Exploitation</span>
+                        </div>
+                        <p class="research-excerpt">Deep dive into constructing sophisticated ROP chains against modern
+                            protections...</p>
+                        <div class="research-meta">
+                            <span class="research-author">by pr4s4nn4</span>
+                            <span class="research-date">Jan 2026</span>
+                        </div>
+                    </div>
+
+                    <!-- Research Card 2 -->
+                    <div class="research-card floating-element" data-float-speed="0.7"
+                        onclick="window.location.href='writeup-viewer.html?url=https://raw.githubusercontent.com/teamhunter/research/main/oauth-exploitation.md'">
+                        <div class="research-header">
+                            <h3 class="research-title">OAuth 2.0 Flow Exploitation</h3>
+                            <span class="research-category">Web Security</span>
+                        </div>
+                        <p class="research-excerpt">Critical flaws in OAuth implementations and exploitation
+                            techniques...</p>
+                        <div class="research-meta">
+                            <span class="research-author">by @kvnn</span>
+                            <span class="research-date">Dec 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- Research Card 3 -->
+                    <div class="research-card floating-element" data-float-speed="0.5"
+                        onclick="window.location.href='writeup-viewer.html?url=https://raw.githubusercontent.com/teamhunter/research/main/rsa-cryptanalysis.md'">
+                        <div class="research-header">
+                            <h3 class="research-title">RSA Cryptanalysis Techniques</h3>
+                            <span class="research-category">Cryptography</span>
+                        </div>
+                        <p class="research-excerpt">Mathematical approaches to breaking weak RSA implementations...</p>
+                        <div class="research-meta">
+                            <span class="research-author">by RadKriss</span>
+                            <span class="research-date">Nov 2025</span>
+                        </div>
+                    </div>
+
+                    <!-- Research Card 4 -->
+                    <div class="research-card floating-element" data-float-speed="0.8"
+                        onclick="window.location.href='writeup-viewer.html?url=https://raw.githubusercontent.com/teamhunter/research/main/steganography-methods.md'">
+                        <div class="research-header">
+                            <h3 class="research-title">Modern Steganography Methods</h3>
+                            <span class="research-category">Forensics</span>
+                        </div>
+                        <p class="research-excerpt">Advanced techniques for hiding and extracting data in digital
+                            media...</p>
+                        <div class="research-meta">
+                            <span class="research-author">by R0z4r1y0</span>
+                            <span class="research-date">Oct 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section id="join" class="section-padding relative">
+        <div class="container mx-auto px-6">
+            <div class="glass-panel-dark">
+                <h2 class="section-title font-orbitron text-center mb-8">
+                    <span class="text-cyber-green">[</span> Join Team Hunter <span class="text-cyber-green">]</span>
+                </h2>
+
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <p class="text-xl font-rajdhani mb-6 leading-relaxed">
+                        Are you an elite operator seeking to push the boundaries of cybersecurity? Do you thrive under
+                        pressure and live for the thrill of the hunt?
+                    </p>
+                    <p class="text-lg font-rajdhani text-cyber-cyan mb-8">
+                        Team Hunter is always searching for exceptional talent. We don't compromise on skill, ethics, or
+                        dedication.
+                    </p>
+
+                    <div class="requirements-grid">
+                        <div class="requirement-item floating-element" data-float-speed="0.7">
+                            <div class="requirement-icon">🔥</div>
+                            <h4>Burning Curiosity</h4>
+                            <p>Never stop asking "how" and "why"</p>
+                        </div>
+                        <div class="requirement-item floating-element" data-float-speed="0.6">
+                            <div class="requirement-icon">⚖️</div>
+                            <h4>Strong Ethics</h4>
+                            <p>Use skills for defense, never harm</p>
+                        </div>
+                        <div class="requirement-item floating-element" data-float-speed="0.8">
+                            <div class="requirement-icon">🎯</div>
+                            <h4>Consistency</h4>
+                            <p>Show up, contribute, improve daily</p>
+                        </div>
+                        <div class="requirement-item floating-element" data-float-speed="0.5">
+                            <div class="requirement-icon">🤝</div>
+                            <h4>Team Spirit</h4>
+                            <p>Collaborate, share knowledge, grow together</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Form -->
+                <div class="application-form-container">
+                    <form id="application-form" class="application-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name / Handle</label>
+                                <input type="text" id="name" name="name" class="form-input"
+                                    placeholder="Enter your name or alias" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-input"
+                                    placeholder="your.email@example.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="discord" class="form-label">Discord Username</label>
+                                <input type="text" id="discord" name="discord" class="form-input"
+                                    placeholder="username#0000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="specialty" class="form-label">Primary Specialty</label>
+                                <select id="specialty" name="specialty" class="form-input" required>
+                                    <option value="">Select your domain</option>
+                                    <option value="web">Web Exploitation</option>
+                                    <option value="binary">Binary Exploitation</option>
+                                    <option value="crypto">Cryptography</option>
+                                    <option value="forensics">Digital Forensics</option>
+                                    <option value="osint">OSINT</option>
+                                    <option value="cloud">Cloud & IoT Security</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience" class="form-label">CTF Experience & Achievements</label>
+                            <textarea id="experience" name="experience" class="form-input form-textarea" rows="4"
+                                placeholder="Tell us about your CTF journey, notable solves, rankings, or security research..."
+                                required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motivation" class="form-label">Why Team Hunter?</label>
+                            <textarea id="motivation" name="motivation" class="form-input form-textarea" rows="4"
+                                placeholder="What drives you to join our elite team?" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profiles" class="form-label">CTF Profiles (Optional)</label>
+                            <input type="text" id="profiles" name="profiles" class="form-input"
+                                placeholder="CTFtime, HackTheBox, TryHackMe, etc.">
+                        </div>
+
+                        <div class="text-center mt-8">
+                            <button type="submit" class="cta-button cta-primary inline-block">
+                                <span class="relative z-10">Submit Application</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="form-success" class="form-success hidden">
+                        <div class="success-icon">✓</div>
+                        <h3 class="text-2xl font-orbitron text-cyber-green mb-4">Application Received</h3>
+                        <p class="font-rajdhani text-lg">Welcome to the selection process, operator. We'll be in touch
+                            soon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer-section">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <h3 class="footer-title font-orbitron mb-4">Team Hunter</h3>
+                    <p class="footer-text font-rajdhani">
+                        Elite CTF operators pushing the boundaries of cybersecurity through competition, research, and
+                        collaboration.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="footer-title font-orbitron mb-4">Quick Links</h3>
+                    <ul class="footer-links font-rajdhani">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#domains">Domains</a></li>
+                        <li><a href="#team">Team</a></li>
+                        <li><a href="#writeups">Writeups</a></li>
+                        <li><a href="#join">Join Us</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer-title font-orbitron mb-4">Connect</h3>
+                    <div class="social-links">
+                        <a href="https://github.com/teamhunter" class="social-link" target="_blank" rel="noopener">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+                        </a>
+                        <a href="https://discord.gg/teamhunter" class="social-link" target="_blank" rel="noopener">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z" />
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com/teamhunter" class="social-link" target="_blank" rel="noopener">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="terminal-footer font-mono text-sm">
+                <p><span class="text-cyber-green">root@hunter:~#</span> cat /etc/copyright</p>
+                <p class="mt-2">© 2026 Team Hunter. All rights reserved. // Hack responsibly. Hunt ethically.</p>
+                <p class="mt-1 text-xs text-gray-600">[ System Status: <span class="text-cyber-green">ONLINE</span> ] [
+                    Threat Level: <span class="text-cyber-cyan">MINIMAL</span> ] [ Operators: <span
+                        class="text-cyber-purple">ACTIVE</span> ]</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>

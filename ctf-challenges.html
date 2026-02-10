@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">CTF Challenges | Team Hunter</title>
+    <meta name="description" content="Explore our CTF challenge writeups and solutions">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-black text-white overflow-x-hidden">
+
+    <!-- Cursor Trail -->
+    <div id="cursor-glow" class="cursor-glow"></div>
+
+    <!-- Particle Background -->
+    <canvas id="particle-canvas" class="particle-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 nav-glass">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-bold font-orbitron cyber-glow">
+                    <span class="text-cyber-green">&gt;</span> TEAM HUNTER
+                </a>
+                <a href="index.html#writeups" class="nav-link font-rajdhani text-lg">← Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="section-padding relative" style="padding-top: 8rem;">
+        <div class="container mx-auto px-6">
+            <div class="glass-panel">
+                <div class="text-center mb-12">
+                    <h1 id="ctf-title" class="section-title font-orbitron">
+                        <span class="text-cyber-green">[</span> <span id="ctf-name-display">CTF</span> Challenges <span
+                            class="text-cyber-green">]</span>
+                    </h1>
+                    <p id="ctf-description" class="text-xl text-cyber-cyan font-rajdhani">Loading challenges...</p>
+                </div>
+
+                <!-- Challenges Grid -->
+                <div id="challenges-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Challenges will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // CTF Challenge Data (In a real app, this would come from an API)
+        const ctfData = {
+            'L3m0nCTF-2025': {
+                name: 'L3m0nCTF 2025',
+                description: "CTF from Amrita Vishwa Vidyapeetham, Coimbatore",
+                challenges: [
+                    { name: 'Forensics - LastCall', category: 'Forensics', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/rozariyomartin/L3m0nCTF2025-Writeups/refs/heads/main/Forensics/LastCall/Readme.md' },
+                    { name: 'Forensics - LayersOfTrust', category: 'Forensics', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/rozariyomartin/L3m0nCTF2025-Writeups/refs/heads/main/Forensics/LayersOfTrust/Readme.md' },
+                    { name: 'Forensics - LostSignal', category: 'Forensics', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/rozariyomartin/L3m0nCTF2025-Writeups/refs/heads/main/Forensics/LostSignal/Readme.md' },
+                    { name: 'Forensics - NowhereOnTheRoad', category: 'Forensics', difficulty: 'Easy', url: 'https://raw.githubusercontent.com/rozariyomartin/L3m0nCTF2025-Writeups/refs/heads/main/Forensics/NowhereOnTheRoad/Readme.md' },
+                    { name: 'Forensics - TheCicadaArchives', category: 'Forensics', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/rozariyomartin/L3m0nCTF2025-Writeups/refs/heads/main/Forensics/TheCicadaArchives/Readme.md' },
+                    { name: 'Web - Agent45', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/Akashvarunn14/Akash-challs-main/refs/heads/master/agent45/writeup.md' },
+                    { name: 'Web - The Shadow Flag', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/Akashvarunn14/Akash-challs-main/refs/heads/master/The%20Shadow%20Flag/writeup.md' },
+                    { name: 'Web - The Locked Market', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/Akashvarunn14/Akash-challs-main/refs/heads/master/%20%20The%20Locked%20Market/FULL_WRITEUP.md' },
+                    { name: 'Web - Secure Calculator Challenge', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/Akashvarunn14/Akash-challs-main/refs/heads/master/l3mon_web_command_injection/writeup.md' },
+                    { name: 'Web - Format Pie', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/Akashvarunn14/Akash-challs-main/refs/heads/master/lemon%20pie/WRITEUP.md' },
+                    { name: 'Web - Lemon Tube', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/Akashvarunn14/Akash-challs-main/refs/heads/master/lemon%20tube/lemontube_writeup.md' },
+                    { name: 'Web - NeonVault', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/Akashvarunn14/Akash-challs-main/refs/heads/master/neon%20vault/writeup.md' },
+                    { name: 'Web - Agent45', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/Akashvarunn14/Akash-challs-main/refs/heads/master/agent45/writeup.md' },
+                    { name: 'Misc - Chromatic Trilogy', category: 'Misc', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/Dineshkriss/L3m0nCTF_Challenges/refs/heads/main/Misc/chromatic_trilogy/README.md' },
+                    { name: 'Misc - VAULT BREACH', category: 'Misc', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/Dineshkriss/L3m0nCTF_Challenges/refs/heads/main/Misc/vault/dist/WRITEUP.md' },
+                    { name: 'Pwn - Jailer', category: 'Pwn', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/Dineshkriss/L3m0nCTF_Challenges/refs/heads/main/Pwn/Jailer/JAILER_WRITEUP.md' },
+                    { name: 'Pwn - Ouroboros Archive', category: 'Pwn', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/Dineshkriss/L3m0nCTF_Challenges/refs/heads/main/Pwn/ouroboros_archive/OUROBOROS_ARCHIVE_WRITEUP.md' },
+                    { name: 'Rev - Lockdown', category: 'Rev', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/Dineshkriss/L3m0nCTF_Challenges/refs/heads/main/REV/Lockdown/Lockdown_dev_info.md' },
+                    { name: 'Rev - Log4Shell', category: 'Rev', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/Dineshkriss/L3m0nCTF_Challenges/refs/heads/main/REV/Log4Shell/LOG4SHELL_WRITEUP.md' },
+                    { name: 'Crypto - Internal Notation', category: 'Crypto', difficulty: 'Easy', url: 'https://raw.githubusercontent.com/rozariyomartin/L3m0nCTF2025-Writeups/refs/heads/main/Cryptography/InternalNotation/Readme.md' },
+                    { name: 'Crypto - Rotating Shadows', category: 'Crypto', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/rozariyomartin/L3m0nCTF2025-Writeups/refs/heads/main/Cryptography/RotatingShadows/Readme.md' },
+                    { name: 'OSINT - Hotel Bagavathi', category: 'OSINT', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/rozariyomartin/L3m0nCTF2025-Writeups/refs/heads/main/OSINT/Hotel%20Bagavathi/Readme.md' },
+                    { name: 'Web - Multiverse of Madness', category: 'Web', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/PraneeshRV/L3m0nCTF2025-Challenges/refs/heads/main/Web/Multiverse_of_Madness_The_Fractured_Timeline/README.md' },
+                    { name: 'Web - 封印解放 — Forbidden Zanpakutō Compiler', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/PraneeshRV/L3m0nCTF2025-Challenges/refs/heads/main/Web/封印解放_Forbidden_Zanpakutō_Compiler/README.md' },
+                    { name: 'OSINT - Echoes of the Abyss', category: 'OSINT', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/PraneeshRV/L3m0nCTF2025-Challenges/refs/heads/main/OSINT/Echoes_of_the_Abyss/README.md' },
+                    { name: 'Misc - Shattered Echoes', category: 'Misc', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/PraneeshRV/L3m0nCTF2025-Challenges/refs/heads/main/Misc/Shattered_Echoes/README.md' },
+                    { name: 'AI - The Bureaucratic Loophole', category: 'AI', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/PraneeshRV/L3m0nCTF2025-Challenges/refs/heads/main/Unreleased%26Incomplete/AI/Bureaucratic%20loophole/SOLUTION.md' },
+                    { name: 'AI - Project Mnemosyne', category: 'AI', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/PraneeshRV/L3m0nCTF2025-Challenges/refs/heads/main/Unreleased%26Incomplete/AI/Project%20Mnemosyne/SOLUTION.md' },
+                    { name: 'web - ', category: '', difficulty: 'Medium', url: '' }
+
+                ]
+            },
+            'picoctf-2025': {
+                name: 'picoCTF 2025',
+                description: 'Educational cybersecurity challenges',
+                challenges: [
+                    { name: 'General - Sanity Check', category: 'General', difficulty: 'Easy', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/picoctf-2025/sanity-check.md' },
+                    { name: 'Web - Cookie Monster', category: 'Web', difficulty: 'Easy', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/picoctf-2025/cookie-monster.md' },
+                    { name: 'Crypto - Caesar Returns', category: 'Crypto', difficulty: 'Easy', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/picoctf-2025/caesar-returns.md' }
+                ]
+            },
+            'hacktm-2025': {
+                name: 'HackTM CTF 2025',
+                description: 'Romanian international CTF',
+                challenges: [
+                    { name: 'Web - XSS Paradise', category: 'Web', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/hacktm-2025/xss-paradise.md' },
+                    { name: 'Reverse - Obfuscated Binary', category: 'Reverse', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/hacktm-2025/obfuscated-binary.md' }
+                ]
+            },
+            'defconquals-2025': {
+                name: 'DEF CON Quals 2025',
+                description: "World's largest hacker convention",
+                challenges: [
+                    { name: 'Pwn - Heap Exploitation', category: 'Binary', difficulty: 'Insane', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/defcon-2025/heap-exploit.md' },
+                    { name: 'Web - SSRF to RCE', category: 'Web', difficulty: 'Insane', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/defcon-2025/ssrf-rce.md' }
+                ]
+            },
+            'corctf-2025': {
+                name: 'COR CTF 2025',
+                description: 'High-quality security challenges',
+                challenges: [
+                    { name: 'Crypto - AES Side Channel', category: 'Crypto', difficulty: 'Hard', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/corctf-2025/aes-side-channel.md' },
+                    { name: 'Forensics - Memory Dump', category: 'Forensics', difficulty: 'Medium', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/corctf-2025/memory-dump.md' }
+                ]
+            },
+            'google-ctf-2025': {
+                name: 'Google CTF 2025',
+                description: "Google's annual security competition",
+                challenges: [
+                    { name: 'Web - V8 Exploit', category: 'Web', difficulty: 'Insane', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/google-ctf-2025/v8-exploit.md' },
+                    { name: 'Sandbox - Chrome Escape', category: 'Pwn', difficulty: 'Insane', url: 'https://raw.githubusercontent.com/teamhunter/writeups/main/google-ctf-2025/chrome-escape.md' }
+                ]
+            }
+        };
+
+        // Get CTF name from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const ctfId = urlParams.get('ctf');
+
+        // Load challenges
+        if (ctfId && ctfData[ctfId]) {
+            const ctf = ctfData[ctfId];
+            document.getElementById('ctf-name-display').textContent = ctf.name;
+            document.getElementById('ctf-description').textContent = ctf.description;
+            document.title = `${ctf.name} Challenges | Team Hunter`;
+
+            const container = document.getElementById('challenges-container');
+            container.innerHTML = '';
+
+            ctf.challenges.forEach((challenge, index) => {
+                const difficultyColors = {
+                    'Easy': 'cyber-green',
+                    'Medium': 'cyber-cyan',
+                    'Hard': 'cyber-purple',
+                    'Insane': '#ff3366'
+                };
+
+                const card = document.createElement('div');
+                card.className = 'challenge-card floating-element';
+                card.dataset.floatSpeed = (0.5 + (index % 3) * 0.2).toString();
+                card.onclick = () => window.location.href = `writeup-viewer.html?url=${encodeURIComponent(challenge.url)}`;
+
+                card.innerHTML = `
+                    <div class="challenge-header">
+                        <h3 class="challenge-title">${challenge.name}</h3>
+                        <span class="challenge-difficulty" style="background: var(--${difficultyColors[challenge.difficulty] || 'cyber-cyan'})">${challenge.difficulty}</span>
+                    </div>
+                    <div class="challenge-category">${challenge.category}</div>
+                    <div class="challenge-cta">Read Writeup →</div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Reinitialize anti-gravity for new elements
+            if (window.antiGravity) {
+                setTimeout(() => window.antiGravity.refresh(), 100);
+            }
+        } else {
+            document.getElementById('ctf-description').textContent = 'CTF not found';
+        }
+    </script>
+
+    <style>
+        .challenge-card {
+            background: rgba(20, 24, 31, 0.7);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .challenge-card:hover {
+            border-color: var(--cyber-cyan);
+            box-shadow: 0 0 30px var(--glow-cyan);
+            transform: translateY(-5px);
+        }
+
+        .challenge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+        }
+
+        .challenge-difficulty {
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--bg-black);
+            text-transform: uppercase;
+        }
+
+        .challenge-category {
+            color: var(--cyber-cyan);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .challenge-cta {
+            color: var(--cyber-green);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .challenge-card:hover .challenge-cta {
+            text-shadow: 0 0 10px var(--glow-green);
+        }
+    </style>
+</body>
+
+</html>
