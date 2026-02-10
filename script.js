@@ -402,7 +402,7 @@ function initFormHandling() {
             // SECURE JOIN TEAM BACKEND INTEGRATION
             // ==========================================
             
-            fetch("https://YOUR-BACKEND.onrender.com/join", {
+            fetch("https://hunter-join-backend.onrender.com/join", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
