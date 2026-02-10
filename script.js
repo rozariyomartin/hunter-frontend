@@ -398,12 +398,40 @@ function initFormHandling() {
             form.style.display = 'none';
             successMessage.classList.remove('hidden');
 
-            // In a real application, you would send this to a server
-            // fetch('/api/applications', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(data)
-            // });
+            // ==========================================
+            // SECURE JOIN TEAM BACKEND INTEGRATION
+            // ==========================================
+            
+            fetch("https://YOUR-BACKEND.onrender.com/join", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: data.name?.trim(),
+                    email: data.email?.trim(),
+                    skills: data.skills?.trim(),
+                    profile: data.profile?.trim()
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to submit application");
+                }
+                return response.json();
+            })
+            .then(() => {
+                // Hide form
+                form.style.display = 'none';
+            
+                // Show success message
+                successMessage.classList.remove('hidden');
+            })
+            .catch(error => {
+                console.error("Join request error:", error);
+                alert("Something went wrong. Please try again later.");
+            });
+
         });
     }
 }
