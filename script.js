@@ -415,8 +415,9 @@ function initFormHandling() {
             });
 
             if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText || "Failed to submit application");
+                const errorData = await response.text();
+                console.error("Backend error response:", errorData);
+                throw new Error(errorData || "Failed to submit application");
             }
 
             // SUCCESS ONLY AFTER BACKEND CONFIRMS
