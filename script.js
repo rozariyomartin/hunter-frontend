@@ -403,33 +403,33 @@ function initFormHandling() {
             // ==========================================
             
             fetch("https://hunter-join-backend-1.onrender.com/join", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: data.name?.trim(),
-                    email: data.email?.trim(),
-                    skills: data.skills?.trim(),
-                    profile: data.profile?.trim()
-                })
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                name: data.name?.trim(),
+                email: data.email?.trim(),
+                discord: data.discord?.trim(),
+                specialty: data.specialty?.trim(),
+                experience: data.experience?.trim(),
+                why: data.why?.trim(),
+                profiles: data.profiles?.trim()
+              })
             })
             .then(response => {
-                if (!response.ok) {
-                    throw new Error("Failed to submit application");
-                }
-                return response.json();
+              if (!response.ok) {
+                throw new Error("Failed to submit application");
+              }
+              return response.json();
             })
             .then(() => {
-                // Hide form
-                form.style.display = 'none';
-            
-                // Show success message
-                successMessage.classList.remove('hidden');
+              form.style.display = "none";
+              successMessage.classList.remove("hidden");
             })
             .catch(error => {
-                console.error("Join request error:", error);
-                alert("Something went wrong. Please try again later.");
+              console.error("Join request error:", error);
+              alert("Something went wrong. Please try again later.");
             });
 
         });
