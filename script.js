@@ -377,64 +377,61 @@ function initMobileMenu() {
 }
 
 // ==========================================
-// FORM HANDLING
+// FORM HANDLING (SECURE BACKEND INTEGRATION)
 // ==========================================
 function initFormHandling() {
     const form = document.getElementById('application-form');
-    const formContainer = form?.parentElement;
     const successMessage = document.getElementById('form-success');
 
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+    if (!form) return;
 
-            // Simple validation
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitButton = form.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.innerText = "Submitting...";
+
+        try {
             const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
+            const data = Object.fromEntries(formData.entries());
 
             console.log('Application submitted:', data);
 
-            // Show success message
+            const response = await fetch("https://hunter-join-backend-1.onrender.com/join", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: data.name?.trim(),
+                    email: data.email?.trim(),
+                    discord: data.discord?.trim(),
+                    specialty: data.specialty?.trim(),
+                    experience: data.experience?.trim(),
+                    why: data.motivation?.trim(),   // FIXED mapping
+                    profiles: data.profiles?.trim()
+                })
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText || "Failed to submit application");
+            }
+
+            // SUCCESS ONLY AFTER BACKEND CONFIRMS
             form.style.display = 'none';
             successMessage.classList.remove('hidden');
 
-            // ==========================================
-            // SECURE JOIN TEAM BACKEND INTEGRATION
-            // ==========================================
-            
-            fetch("https://hunter-join-backend-1.onrender.com/join", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                name: data.name?.trim(),
-                email: data.email?.trim(),
-                discord: data.discord?.trim(),
-                specialty: data.specialty?.trim(),
-                experience: data.experience?.trim(),
-                why: data.why?.trim(),
-                profiles: data.profiles?.trim()
-              })
-            })
-            .then(response => {
-              if (!response.ok) {
-                throw new Error("Failed to submit application");
-              }
-              return response.json();
-            })
-            .then(() => {
-              form.style.display = "none";
-              successMessage.classList.remove("hidden");
-            })
-            .catch(error => {
-              console.error("Join request error:", error);
-              alert("Something went wrong. Please try again later.");
-            });
-
-        });
-    }
+        } catch (error) {
+            console.error("Join request error:", error);
+            alert("Submission failed. Please try again later.");
+            submitButton.disabled = false;
+            submitButton.innerText = "Submit Application";
+        }
+    });
 }
+
 
 // ==========================================
 // INTERSECTION OBSERVER FOR ANIMATIONS
