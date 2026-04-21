@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Writeup Page | Team Hunter</title>
+    <meta
+      name="description"
+      content="Team Hunter writeup page for verified challenge archives."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="writeup-route">
+    <div class="writeup-progress" aria-hidden="true">
+      <span id="writeup-progress-bar"></span>
+    </div>
+
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="index.html#top" aria-label="Team Hunter home">
+          <span class="brand-mark">
+            <img src="hunt3r_logo.jpeg" alt="" decoding="async" />
+          </span>
+          <span class="brand-copy">
+            <span class="brand-name">Team Hunter</span>
+            <span class="brand-subtitle">Writeup Page</span>
+          </span>
+        </a>
+
+        <nav class="site-nav site-nav-static" aria-label="Reader navigation">
+          <a href="index.html#writeups">Archive</a>
+          <a href="index.html#results">Results</a>
+          <a href="index.html#join-us">Join Us</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="writeup-route-main">
+      <section class="section writeup-route-shell">
+        <div class="container">
+          <div class="writeup-route-atmosphere" aria-hidden="true">
+            <span class="writeup-route-orb writeup-route-orb-a"></span>
+            <span class="writeup-route-orb writeup-route-orb-b"></span>
+            <span class="writeup-route-gridline"></span>
+          </div>
+
+          <article class="surface-card writeup-route-hero reveal">
+            <a class="writeup-back" href="index.html#writeups">
+              <i data-lucide="arrow-left"></i>
+              <span>Back to writeup archive</span>
+            </a>
+            <p class="section-kicker" id="writeup-route-event">Loading event...</p>
+            <h1 class="writeup-route-title" id="writeup-route-title">Loading challenge...</h1>
+            <p class="writeup-route-summary" id="writeup-route-summary">
+              Preparing the dedicated Team Hunter writeup page.
+            </p>
+            <div class="writeup-route-pills">
+              <span class="writeup-route-pill" id="writeup-route-category">Category</span>
+              <span class="writeup-route-pill" id="writeup-route-difficulty">Difficulty</span>
+              <span class="writeup-route-pill" id="writeup-route-availability">Availability</span>
+            </div>
+          </article>
+
+          <div class="writeup-route-grid">
+            <article class="surface-card writeup-route-article reveal">
+              <div class="writeup-route-article-head">
+                <p class="viewer-state" id="writeup-route-status" aria-live="polite">
+                  Loading writeup...
+                </p>
+              </div>
+              <article class="markdown-body writeup-route-content" id="writeup-route-content"></article>
+            </article>
+
+            <aside class="surface-card writeup-route-aside reveal">
+              <div class="writeup-route-aside-block">
+                <p class="writeups-caption">Page Actions</p>
+                <div class="writeup-route-actions">
+                  <a class="viewer-source" href="index.html#writeups">Return to archive</a>
+                  <a
+                    class="viewer-source"
+                    id="writeup-route-source"
+                    href="#"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    hidden
+                  >
+                    Open raw source
+                  </a>
+                </div>
+              </div>
+
+              <div class="writeup-route-aside-block">
+                <p class="writeups-caption">Source Status</p>
+                <p class="writeup-route-source-status" id="writeup-route-source-status">
+                  Loading source metadata...
+                </p>
+              </div>
+
+              <div class="writeup-route-aside-block">
+                <p class="writeups-caption">Contents</p>
+                <nav class="writeup-route-toc" id="writeup-route-toc" aria-label="Writeup contents"></nav>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <div class="footer-brand">
+          <span class="footer-logo">
+            <img src="hunt3r_logo.jpeg" alt="" decoding="async" />
+          </span>
+          <p>
+            Team Hunter | Amrita Vishwa Vidyapeetham |
+            <a href="index.html#writeups">Writeup Archive</a> | 2025–2026
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
