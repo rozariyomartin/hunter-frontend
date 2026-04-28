@@ -1079,9 +1079,26 @@ select {
   gap: 0.8rem;
 }
 
+.upcoming-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.upcoming-list article {
+  display: grid;
+  gap: 0.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.upcoming-list article:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
 .upcoming-card h3 {
   margin: 0;
-  font-size: 1.8rem;
+  font-size: 1.35rem;
   line-height: 1.08;
 }
 
