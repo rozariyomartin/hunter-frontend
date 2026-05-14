@@ -9,6 +9,7 @@ const motionZones = document.querySelectorAll("[data-motion-zone]");
 const introScene = document.querySelector(".intro-scene");
 const introStage = document.querySelector(".intro-stage");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const resultsPreviewRows = 12;
 
 const writeupCatalog = [
   {
@@ -406,6 +407,53 @@ function activateTab(button) {
     const isActive = panel.id === targetId;
     panel.classList.toggle("is-active", isActive);
     panel.hidden = !isActive;
+  });
+}
+
+function initResultsDisclosure() {
+  tabPanels.forEach((panel) => {
+    const tableWrap = panel.querySelector(".table-wrap");
+    const tableBody = panel.querySelector(".results-table tbody");
+
+    if (!tableWrap || !tableBody) {
+      return;
+    }
+
+    const rows = Array.from(tableBody.querySelectorAll("tr"));
+
+    if (rows.length <= resultsPreviewRows || panel.querySelector(".results-disclosure")) {
+      return;
+    }
+
+    rows.slice(resultsPreviewRows).forEach((row) => row.classList.add("result-row-extra"));
+
+    const hiddenCount = rows.length - resultsPreviewRows;
+    const disclosure = document.createElement("div");
+    const button = document.createElement("button");
+    const label = document.createElement("span");
+    const icon = document.createElement("i");
+
+    disclosure.className = "results-disclosure";
+    button.type = "button";
+    button.className = "results-toggle";
+    button.setAttribute("aria-expanded", "false");
+    icon.setAttribute("data-lucide", "chevron-down");
+
+    function setExpanded(isExpanded) {
+      panel.classList.toggle("is-results-expanded", isExpanded);
+      panel.classList.toggle("is-results-collapsed", !isExpanded);
+      button.setAttribute("aria-expanded", String(isExpanded));
+      label.textContent = isExpanded ? "Show fewer CTFs" : `Show ${hiddenCount} more CTFs`;
+    }
+
+    button.append(label, icon);
+    disclosure.append(button);
+    tableWrap.after(disclosure);
+    setExpanded(false);
+
+    button.addEventListener("click", () => {
+      setExpanded(!panel.classList.contains("is-results-expanded"));
+    });
   });
 }
 
@@ -1020,6 +1068,7 @@ if (!prefersReducedMotion) {
 
 initArchivePage();
 initReaderPage();
+initResultsDisclosure();
 updateIntroScene();
 updateMotionZones();
 updateWriteupsProgress();
