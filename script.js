@@ -249,6 +249,24 @@ const writeupCatalog = [
     ],
   },
   {
+    id: "ramunchers-ctf-2026",
+    name: "RAMunchers CTF",
+    description: "Writeups hosted on R0z4r1y0's public Notion archive and embedded inside the Team Hunter reader.",
+    sourceStatus: "Embedded from the public Notion writeup page provided by R0z4r1y0.",
+    available: true,
+    challenges: [
+      {
+        id: "ramunchers-ctf-writeups-r0z4r1y0",
+        title: "RAMunchers CTF Writeups",
+        category: "Mixed",
+        difficulty: "Unspecified",
+        live: true,
+        renderMode: "iframe",
+        url: "https://rozariyomartin.notion.site/ebd//36341764502f80b5a8efe9e018912bdb",
+      },
+    ],
+  },
+  {
     id: "htb-chennai-2026",
     name: "HTB Chennai 2026",
     description: "Writeups imported from the CTF_writeups GitHub archive.",
@@ -502,6 +520,10 @@ function getChallengeById(ctf, challengeId) {
   return ctf?.challenges.find((challenge) => challenge.id === challengeId) ?? null;
 }
 
+function isIframeWriteup(challenge) {
+  return challenge?.renderMode === "iframe";
+}
+
 function getActiveArchiveCtf() {
   return getCtfById(archiveState.activeCtfId) ?? writeupCatalog[0];
 }
@@ -675,7 +697,9 @@ function renderArchiveGrid(ctf) {
       </span>
       <h4>${escapeHtml(challenge.title)}</h4>
       <p>${
-        challenge.live
+        isIframeWriteup(challenge)
+          ? "Open a dedicated Team Hunter page with the original Notion writeup embedded inside the site."
+          : challenge.live
           ? "Open a dedicated writeup page with clean markdown rendering and source metadata."
           : "Open a dedicated archive page that explains the current source-verification state."
       }</p>
@@ -756,6 +780,48 @@ function renderMarkdownInto(container, markdown) {
     image.loading = "lazy";
     image.decoding = "async";
   });
+}
+
+function renderIframeWriteup(ctf, challenge) {
+  if (!readerElements.content || !readerElements.toc) {
+    return;
+  }
+
+  clearReaderTocObserver();
+  readerElements.content.innerHTML = "";
+
+  const shell = document.createElement("div");
+  shell.className = "writeup-embed-shell";
+
+  const toolbar = document.createElement("div");
+  toolbar.className = "writeup-embed-toolbar";
+  toolbar.innerHTML = `
+    <span>${escapeHtml(ctf.name)}</span>
+    <a href="${escapeHtml(challenge.url)}" target="_blank" rel="noreferrer noopener">Open in Notion</a>
+  `;
+
+  const iframe = document.createElement("iframe");
+  iframe.className = "writeup-embed-frame";
+  iframe.src = challenge.url;
+  iframe.title = `${challenge.title} embedded writeup`;
+  iframe.loading = "lazy";
+  iframe.referrerPolicy = "strict-origin-when-cross-origin";
+  iframe.allow = "fullscreen; clipboard-write";
+  iframe.allowFullscreen = true;
+  iframe.setAttribute(
+    "sandbox",
+    "allow-downloads allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+  );
+
+  const note = document.createElement("p");
+  note.className = "writeup-embed-note";
+  note.textContent =
+    "This Notion writeup is embedded inside the Team Hunter reader. If Notion blocks loading on your browser, use the source link.";
+
+  shell.append(toolbar, iframe, note);
+  readerElements.content.appendChild(shell);
+  readerElements.toc.innerHTML = `<p class="writeup-route-toc-empty">This writeup is embedded from Notion, so section headings are controlled by the source page.</p>`;
+  setReaderState("Embedded Notion writeup loaded.");
 }
 
 function clearReaderTocObserver() {
@@ -873,21 +939,29 @@ function renderReaderMeta(ctf, challenge) {
 
   readerElements.event.textContent = ctf.name;
   readerElements.title.textContent = challenge.title;
-  readerElements.summary.textContent = challenge.live
-    ? "This page renders the original Team Hunter writeup cleanly inside the site while preserving the source link."
-    : "This page preserves the archive structure for the challenge, but the source markdown is currently unavailable.";
+  readerElements.summary.textContent = isIframeWriteup(challenge)
+    ? "This page embeds the original Notion writeup inside the Team Hunter reader while preserving the source link."
+    : challenge.live
+      ? "This page renders the original Team Hunter writeup cleanly inside the site while preserving the source link."
+      : "This page preserves the archive structure for the challenge, but the source markdown is currently unavailable.";
   readerElements.category.textContent = challenge.category;
   readerElements.difficulty.textContent = challenge.difficulty;
-  readerElements.availability.textContent = challenge.live ? "Live source" : "Source unavailable";
+  readerElements.availability.textContent = isIframeWriteup(challenge)
+    ? "Embedded source"
+    : challenge.live
+      ? "Live source"
+      : "Source unavailable";
   readerElements.sourceStatus.textContent = ctf.sourceStatus;
 
   if (readerElements.source) {
     if (challenge.live && challenge.url) {
       readerElements.source.hidden = false;
       readerElements.source.href = challenge.url;
+      readerElements.source.textContent = isIframeWriteup(challenge) ? "Open Notion source" : "Open raw source";
     } else {
       readerElements.source.hidden = true;
       readerElements.source.removeAttribute("href");
+      readerElements.source.textContent = "Open raw source";
     }
   }
 
@@ -921,6 +995,11 @@ async function initReaderPage() {
   setReaderState("Loading writeup...", "loading");
 
   try {
+    if (isIframeWriteup(challenge)) {
+      renderIframeWriteup(ctf, challenge);
+      return;
+    }
+
     const markdown = await fetchMarkdown(challenge.url);
     renderMarkdownInto(readerElements.content, markdown);
     buildReaderToc();

@@ -1982,6 +1982,49 @@ select {
   padding-right: 0;
 }
 
+.writeup-embed-shell {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.writeup-embed-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(212, 161, 85, 0.12), transparent 48%),
+    rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.writeup-embed-toolbar a {
+  color: #f0cd97;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.writeup-embed-frame {
+  width: 100%;
+  min-height: 78vh;
+  border: 1px solid rgba(212, 161, 85, 0.22);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.writeup-embed-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .writeup-route-aside {
   position: sticky;
   top: calc(var(--nav-height) + 1rem);
