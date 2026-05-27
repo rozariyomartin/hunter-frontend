@@ -267,6 +267,24 @@ const writeupCatalog = [
     ],
   },
   {
+    id: "secleaf-ctf",
+    name: "SecLeaf CTF",
+    description: "Writeups hosted on R0z4r1y0's public Notion archive and embedded inside the Team Hunter reader.",
+    sourceStatus: "Embedded from the public Notion writeup page provided by R0z4r1y0.",
+    available: true,
+    challenges: [
+      {
+        id: "secleaf-ctf-writeups-team-hunter",
+        title: "SecLeaf CTF Writeups",
+        category: "Mixed",
+        difficulty: "Unspecified",
+        live: true,
+        renderMode: "iframe",
+        url: "https://rozariyomartin.notion.site/ebd//36a41764502f80a5867dd6830185ee8b",
+      },
+    ],
+  },
+  {
     id: "htb-chennai-2026",
     name: "HTB Chennai 2026",
     description: "Writeups imported from the CTF_writeups GitHub archive.",
