@@ -421,7 +421,7 @@ const readerElements = {
 };
 
 const archiveState = {
-  activeCtfId: writeupCatalog[0]?.id ?? null,
+  activeCtfId: writeupCatalog.find((ctf) => ctf.id === "secleaf-ctf")?.id ?? writeupCatalog[0]?.id ?? null,
   activeFilter: "All",
 };
 
