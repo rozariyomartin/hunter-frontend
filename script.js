@@ -240,8 +240,8 @@ const writeupCatalog = [
   {
     id: "aitu-ctf-2026",
     name: "AITU CTF 2026 Quals",
-    description: "Writeups imported from the CTF_writeups GitHub archive.",
-    sourceStatus: "Raw markdown links are generated from kvprasannakumar05/CTF_writeups on the main branch.",
+    description: "Writeups for AITU CTF 2026 Quals.",
+    sourceStatus: "",
     available: true,
     challenges: [
       { id: "aitu-ctf-2026-nounce", title: "Nounce", category: "Crypto", difficulty: "Unspecified", live: true, url: "https://raw.githubusercontent.com/kvprasannakumar05/CTF_writeups/refs/heads/main/AITU-2026/cryptography/nounce.md" },
@@ -251,8 +251,8 @@ const writeupCatalog = [
   {
     id: "ramunchers-ctf-2026",
     name: "RAMunchers CTF",
-    description: "Writeups hosted on R0z4r1y0's public Notion archive and embedded inside the Team Hunter reader.",
-    sourceStatus: "Embedded from the public Notion writeup page provided by R0z4r1y0.",
+    description: "Writeups for Ramunchers CTF.",
+    sourceStatus: "",
     available: true,
     challenges: [
       {
@@ -269,8 +269,8 @@ const writeupCatalog = [
   {
     id: "secleaf-ctf",
     name: "SecLeaf CTF",
-    description: "Writeups hosted on R0z4r1y0's public Notion archive and embedded inside the Team Hunter reader.",
-    sourceStatus: "Embedded from the public Notion writeup page provided by R0z4r1y0.",
+    description: "Writeups for SecLeaf CTF.",
+    sourceStatus: "",
     available: true,
     challenges: [
       {
@@ -287,8 +287,8 @@ const writeupCatalog = [
   {
     id: "htb-chennai-2026",
     name: "HTB Chennai 2026",
-    description: "Writeups imported from the CTF_writeups GitHub archive.",
-    sourceStatus: "Raw markdown links are generated from kvprasannakumar05/CTF_writeups on the main branch.",
+    description: "Writeups for HTB Chennai 2026.",
+    sourceStatus: "",
     available: true,
     challenges: [
       { id: "htb-chennai-2026-delis", title: "Delis", category: "Rev", difficulty: "Unspecified", live: true, url: "https://raw.githubusercontent.com/kvprasannakumar05/CTF_writeups/refs/heads/main/HTB_Chennai_2026/rev/delis.md" },
@@ -298,8 +298,8 @@ const writeupCatalog = [
   {
     id: "tamu-ctf-2026",
     name: "TAMU CTF 2026",
-    description: "Writeups imported from the CTF_writeups GitHub archive.",
-    sourceStatus: "Raw markdown links are generated from kvprasannakumar05/CTF_writeups on the main branch.",
+    description: "Writeups for TAMU CTF 2026.",
+    sourceStatus: "",
     available: true,
     challenges: [
       { id: "tamu-ctf-2026-bad-apple", title: "Bad Apple", category: "Web", difficulty: "Unspecified", live: true, url: "https://raw.githubusercontent.com/kvprasannakumar05/CTF_writeups/refs/heads/main/TAMU_CTF_2026/web/bad_apple.md" },
@@ -309,8 +309,8 @@ const writeupCatalog = [
   {
     id: "texsaw-2026",
     name: "TexSAW 2026",
-    description: "Writeups imported from the CTF_writeups GitHub archive.",
-    sourceStatus: "Raw markdown links are generated from both TexSaw_2026 and texsaw_2026 folders in kvprasannakumar05/CTF_writeups.",
+    description: "Writeups for TexSAW 2026.",
+    sourceStatus: "",
     available: true,
     challenges: [
       { id: "texsaw-2026-lost-my-keys", title: "Lost My Keys", category: "Forensics", difficulty: "Unspecified", live: true, url: "https://raw.githubusercontent.com/kvprasannakumar05/CTF_writeups/refs/heads/main/TexSaw_2026/forensics/Lost_my_keys.md" },
@@ -325,8 +325,8 @@ const writeupCatalog = [
   {
     id: "umassctf-2026",
     name: "UMassCTF 2026",
-    description: "Writeups imported from the CTF_writeups GitHub archive.",
-    sourceStatus: "Raw markdown links are generated from kvprasannakumar05/CTF_writeups on the main branch.",
+    description: "Writeups for UMassCTF 2026.",
+    sourceStatus: "",
     available: true,
     challenges: [
       { id: "umassctf-2026-rooster", title: "Rooster", category: "Crypto", difficulty: "Unspecified", live: true, url: "https://raw.githubusercontent.com/kvprasannakumar05/CTF_writeups/refs/heads/main/UMASS_2026/crypto/rooster.md" },
@@ -350,8 +350,8 @@ const writeupCatalog = [
   {
     id: "apoorvctf-2026",
     name: "ApoorvCTF 2026",
-    description: "Writeups imported from the CTF_writeups GitHub archive.",
-    sourceStatus: "Raw markdown links are generated from kvprasannakumar05/CTF_writeups on the main branch.",
+    description: "Writeups for ApoorvCTF 2026.",
+    sourceStatus: "",
     available: true,
     challenges: [
       { id: "apoorvctf-2026-a-golden-experience-requiem", title: "A Golden Experience Requiem", category: "Pwn", difficulty: "Unspecified", live: true, url: "https://raw.githubusercontent.com/kvprasannakumar05/CTF_writeups/refs/heads/main/apoorv_ctf/pwn/A_Golden_Experience_Requiem%20.md" },
@@ -365,8 +365,8 @@ const writeupCatalog = [
   {
     id: "crest-ctf",
     name: "CREST CTF",
-    description: "Writeups imported from the CTF_writeups GitHub archive.",
-    sourceStatus: "Raw markdown links are generated from kvprasannakumar05/CTF_writeups on the main branch.",
+    description: "Writeups for CREST CTF.",
+    sourceStatus: "",
     available: true,
     challenges: [
       { id: "crest-ctf-next-token", title: "Next Token", category: "Crypto", difficulty: "Unspecified", live: true, url: "https://raw.githubusercontent.com/kvprasannakumar05/CTF_writeups/refs/heads/main/crest/cryptography/next_token.md" },
@@ -377,8 +377,8 @@ const writeupCatalog = [
   {
     id: "utctf-2026",
     name: "UTCTF 2026",
-    description: "Writeups imported from the CTF_writeups GitHub archive.",
-    sourceStatus: "Raw markdown links are generated from kvprasannakumar05/CTF_writeups on the main branch.",
+    description: "Writeups for UTCTF 2026.",
+    sourceStatus: "",
     available: true,
     challenges: [
       { id: "utctf-2026-insanity-check", title: "Insanity Check", category: "General", difficulty: "Unspecified", live: true, url: "https://raw.githubusercontent.com/kvprasannakumar05/CTF_writeups/refs/heads/main/utctf_2026/insanity_check.md" },
